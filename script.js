@@ -39,8 +39,25 @@ function pressNumber(digit) {
         typedNumberText = digit;
     }
     else {
-        typedNumberText =typedNumberText + digit
+        typedNumberText = typedNumberText + digit
     }
 
     updateScreen()
+}
+function pressOperator(op) {
+    
+    setStatus('')
+
+    if (typedNumberText === '' && storedNumber === null) {
+        setStatus('Type a number first');
+    }
+    
+    if (storedNumber === null) {
+        storedNumber = Number(typedNumberText)
+        currentOperator = op
+        historyParts = [String(storedNumber), currentOperator]
+        typedNumberText = ''
+        updateScreen();
+        
+    }
 }
