@@ -96,14 +96,61 @@ function pressOperator(op) {
              return
         }
     }
+
+     let result = storedNumber
+    if (currentOperator === '+') {
+        result = storedNumber + secondNumber
+    }
+    else if (currentOperator === '-') {
+        result = storedNumber - secondNumber
+    }
+    else if (currentOperator === '*') {
+        result = storedNumber * secondNumber
+    }
+    else if (currentOperator === '/') {
+        result = storedNumber / secondNumber
+    }
+
+    storedNumber = result
+    currentOperator = op
 }
 
-function clearAll() {
-    typedNumberText = '';
-    storedNumber = null;
-    currentOperator = '';
-    historyParts = [];
+function clearAll () {
+  typedNumberText = '';
+  storedNumber = null;
+  currentOperator = '';
+  historyParts = [];
 
-    setStatus ('cleared')
-    updateScreen();
+  setStatus('Cleared.')
+  updateScreen()
+}
+
+function calculate() {
+    setStatus('')
+    if (storedNumber === null || currentOperator === '' || typedNumberText === '') {
+        setStatus('You have an incomplete expression')
+        updateScreen()
+        return
+    }
+
+    const secondNumber = Number(typedNumberText)
+
+    let result = storedNumber
+    if (currentOperator === '+') {
+        result = storedNumber + secondNumber
+    }
+    else if (currentOperator === '-') {
+        result = storedNumber - secondNumber
+    }
+    else if (currentOperator === '*') {
+        result = storedNumber * secondNumber
+    }
+    else if (currentOperator === '/') {
+        result = storedNumber / secondNumber
+    }
+    storedNumber = result
+    currentOperator = ''
+    typedNumberText = ''
+    setStatus('Done!')
+    updateScreen()
 }
